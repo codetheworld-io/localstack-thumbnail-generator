@@ -15,14 +15,21 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
     },
+    localstack: {
+      debug: true,
+      stages: ['local'],
+    }
   },
   plugins: [
     'serverless-esbuild',
+    'serverless-localstack',
   ],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
     region: 'ap-northeast-1',
+    versionFunctions: false,
+    stage: 'local',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
