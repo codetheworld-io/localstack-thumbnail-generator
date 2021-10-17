@@ -12,3 +12,15 @@ export const generateSignedUploadUrl: AWS['functions'][0] = {
     },
   ],
 };
+
+export const generateImageThumbnail: AWS['functions'][0] = {
+  handler: `${handlerPath(__dirname)}/handler.generateImageThumbnail`,
+  events: [
+    {
+      s3: {
+        bucket: 'photos',
+        event: 's3:ObjectCreated:*',
+      }
+    },
+  ],
+};

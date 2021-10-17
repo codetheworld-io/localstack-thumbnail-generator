@@ -4,7 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "deploy:local": "serverless deploy --stage local"
+    "deploy:local": "serverless deploy --stage local --force"
   },
   "engines": {
     "node": ">=14.15.0"

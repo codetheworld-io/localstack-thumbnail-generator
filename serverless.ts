@@ -1,7 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
-import { generateSignedUploadUrl } from '@functions/thumbnail';
+import { generateSignedUploadUrl, generateImageThumbnail } from '@functions/thumbnail';
 
 const serverlessConfiguration: AWS = {
   service: 'localstack-thumbnail-generator',
@@ -40,21 +40,20 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
     lambdaHashingVersion: '20201221',
+    s3: {
+      photoBucket: {
+        name: 'photos',
+        versioningConfiguration: {
+          Status: 'Enabled',
+        },
+      },
+    },
   },
   // import the function via paths
   functions: {
     hello,
     generateSignedUploadUrl,
-  },
-  resources: {
-    Resources: {
-      photoBucket: {
-        Type: 'AWS::S3::Bucket',
-        Properties: {
-          BucketName: 'photos',
-        },
-      },
-    },
+    generateImageThumbnail,
   },
 };
 

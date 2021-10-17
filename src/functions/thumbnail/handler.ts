@@ -1,6 +1,6 @@
 import { formatJSONResponse } from '@libs/apiGateway';
 import { BUCKET_NAME } from '@libs/constants';
-import { APIGatewayProxyHandler } from 'aws-lambda';
+import { APIGatewayProxyHandler, S3Handler } from 'aws-lambda';
 import { S3 } from 'aws-sdk';
 
 const s3 = new S3({
@@ -10,7 +10,6 @@ const s3 = new S3({
 });
 
 export const generateSignedUploadUrl: APIGatewayProxyHandler = async (event) => {
-  console.log(event.body);
   const { fileName, fileType } = JSON.parse(event.body) as { fileName: string; fileType: string };
   const params = {
     Bucket: BUCKET_NAME,
@@ -23,4 +22,9 @@ export const generateSignedUploadUrl: APIGatewayProxyHandler = async (event) => 
   const signedUrl = await s3.getSignedUrlPromise('putObject', params);
 
   return formatJSONResponse({ signedUrl });
+};
+
+export const generateImageThumbnail: S3Handler = async (event) => {
+  console.log(event);
+  return;
 };

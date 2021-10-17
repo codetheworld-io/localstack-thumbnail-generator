@@ -8,6 +8,7 @@ services:
       - DEFAULT_REGION=ap-northeast-1
       - DATA_DIR=/tmp/localstack/data
       - LAMBDA_EXECUTOR=docker
+      - DEBUG=true
     volumes:
       - ./.localstack:/tmp/localstack
       - /var/run/docker.sock:/var/run/docker.sock
