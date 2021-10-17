@@ -3,12 +3,17 @@ version: '3'
 services:
   localstack:
     image: localstack/localstack:latest
+    network_mode: bridge
     environment:
       - SERVICES=s3,apigateway,lambda,cloudformation,sts,iam
       - DEFAULT_REGION=ap-northeast-1
       - DATA_DIR=/tmp/localstack/data
       - LAMBDA_EXECUTOR=docker
       - DEBUG=true
+      - HOSTNAME_FROM_LAMBDA=localhost
+      - LAMBDA_DOCKER_NETWORK=host
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
     volumes:
       - ./.localstack:/tmp/localstack
       - /var/run/docker.sock:/var/run/docker.sock

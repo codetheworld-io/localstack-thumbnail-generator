@@ -1,7 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
-import { generateSignedUploadUrl, generateImageThumbnail } from '@functions/thumbnail';
+import { generateImageThumbnail, generateSignedUploadUrl } from '@functions/thumbnail';
 
 const serverlessConfiguration: AWS = {
   service: 'localstack-thumbnail-generator',
@@ -43,9 +43,6 @@ const serverlessConfiguration: AWS = {
     s3: {
       photoBucket: {
         name: 'photos',
-        versioningConfiguration: {
-          Status: 'Enabled',
-        },
       },
     },
   },

@@ -1,3 +1,4 @@
+import { ORIGINALS } from '@libs/constants';
 import { handlerPath } from '@libs/handlerResolver';
 import type { AWS } from '@serverless/typescript';
 
@@ -20,7 +21,10 @@ export const generateImageThumbnail: AWS['functions'][0] = {
       s3: {
         bucket: 'photos',
         event: 's3:ObjectCreated:*',
-      }
+        rules: [
+          { prefix: ORIGINALS },
+        ],
+      },
     },
   ],
 };
