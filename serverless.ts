@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
+import { generateSignedUploadUrl } from '@functions/thumbnail';
 
 const serverlessConfiguration: AWS = {
   service: 'localstack-thumbnail-generator',
@@ -41,7 +42,20 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: '20201221',
   },
   // import the function via paths
-  functions: { hello },
+  functions: {
+    hello,
+    generateSignedUploadUrl,
+  },
+  resources: {
+    Resources: {
+      photoBucket: {
+        Type: 'AWS::S3::Bucket',
+        Properties: {
+          BucketName: 'photos',
+        },
+      },
+    },
+  },
 };
 
 module.exports = serverlessConfiguration;

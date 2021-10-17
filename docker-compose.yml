@@ -7,7 +7,9 @@ services:
       - SERVICES=s3,apigateway,lambda,cloudformation,sts,iam
       - DEFAULT_REGION=ap-northeast-1
       - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=docker
     volumes:
       - ./.localstack:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 4566:4566
