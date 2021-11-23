@@ -1,0 +1,28 @@
+###
+
+@apiGatewayId = 2w8m7d5ekl
+
+###
+POST http://localhost:4566/restapis/{{apiGatewayId}}/local/_user_request_/hello
+Content-Type: application/json
+
+{
+  "name": "Lazy cat"
+}
+
+
+###
+POST http://localhost:4566/restapis/{{apiGatewayId}}/local/_user_request_/pre-signed-urls
+Content-Type: application/json
+
+{
+  "fileName": "cat.png",
+  "fileType": "image/png"
+}
+
+###
+curl --location --request PUT 'http://0.0.0.0:4566/photos/originals/cat.png?Content-Type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=test%2F20211123%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20211123T090421Z&X-Amz-Expires=300&X-Amz-Signature=64591d79a5326ff7bdf8c11b19f5123d4728e86ee0b0efc5622859695d6a26a8&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read' \
+--form 'file=@"cat.jpg"'
+
+
+
