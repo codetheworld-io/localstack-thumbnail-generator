@@ -10,10 +10,10 @@ export default {
         path: 'hello',
         request: {
           schemas: {
-            'application/json': schema
-          }
-        }
-      }
-    }
-  ]
-}
+            'application/json': schema,
+          },
+        },
+      },
+    },
+  ],
+};

@@ -41,14 +41,14 @@ export const generateImageThumbnail: S3Handler = async (event) => {
 
   // Check that the image type is supported
   const imageType = typeMatch[1].toLowerCase();
-  if (imageType != 'jpg' && imageType != 'png') {
+  if (imageType !== 'jpg' && imageType !== 'png') {
     throw new Error(`Unsupported image type: ${imageType}`);
   }
 
   // Download the image from the S3 source bucket.
   const originImage = await s3.getObject({
     Bucket: BUCKET_NAME,
-    Key: `${ORIGINALS}/${fileName}`
+    Key: `${ORIGINALS}/${fileName}`,
   }).promise();
 
   // set thumbnail width. Resize will set the height automatically to maintain aspect ratio.

@@ -19,7 +19,7 @@ const serverlessConfiguration: AWS = {
     localstack: {
       debug: true,
       stages: ['local'],
-    }
+    },
   },
   plugins: [
     'serverless-esbuild',
